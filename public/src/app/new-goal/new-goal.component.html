@@ -1,0 +1,19 @@
+<form>
+    <label>Goal Name:</label>
+    <!-- <p *ngIf="!Name.valid">Name must be at least 3 characters</p> -->
+    <p><input required minlength="3" #Name="ngModel" [(ngModel)]="newGoal.Name" name="newGoal.Name" type="text" placeholder="Workout"></p>
+
+    <label>Goal Description:</label>
+    <!-- <p *ngIf="!Description.valid">Description must be at least 3 characters</p> -->
+    <p><input required minlength="3" #Description="ngModel" [(ngModel)]="newGoal.Description" name="newGoal.Description" type="text" placeholder="Workout once day. "></p>
+
+    <label>Goal Frequency:</label>
+    <!-- <p *ngIf="!Type.valid"></p> -->
+    <select required #Type="ngModel" [(ngModel)]="newGoal.Type" name="newGoal.Description">
+        <option value="Daily">Daily</option>
+        <option value="Daily">Weekly</option>
+        <option value="Daily">Yearly</option>
+    </select>
+
+    <input class="btn btn-success" type="submit" (click)="createGoal()" value="Create">
+</form>
