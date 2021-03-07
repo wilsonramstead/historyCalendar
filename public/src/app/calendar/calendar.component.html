@@ -16,14 +16,21 @@
 
     <ol id="calendar-days" class="days-grid">
         <div *ngFor="let day of calendarDaysElement">
-            <li *ngIf="day[1] == 'today'" class="calendar-day calendar-day-today"> {{ day[0] }}</li>
-            <li *ngIf="day[1] == 'not_current'" class="calendar-day calendar-day--not-current">{{ day[0] }}</li>
-            <li *ngIf="day[1] == ''" class="calendar-day">{{ day[0] }}</li>
-
+            <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == 'today'" class="calendar-day calendar-day-today"> {{ day[0] }}</div>
+            <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == 'not_current'" class="calendar-day calendar-day--not-current">{{ day[0] }}</div>
+            <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == ''" class="calendar-day">{{ day[0] }}</div>
         </div>
     </ol>
-    
 </div>
 
+<div class="expandDay">
 
-<script></script>
+    <div class="dayContent">
+        <h1 style="display: inline-block;">{{ expandDayTitle }}</h1>
+        <div (click)="closeDisplay()" class="closeBtn">
+            <div class="btn-line"></div>
+            <div class="btn-line"></div>
+        </div>
+        <hr>
+    </div>
+</div>

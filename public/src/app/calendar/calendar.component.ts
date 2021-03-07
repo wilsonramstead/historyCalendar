@@ -155,4 +155,62 @@ export class CalendarComponent implements OnInit {
   //   })
   //   return this.allGoals;
   // }
+
+
+
+
+  // Select DOM Items
+// const menuBtn = document.querySelector('.menu-btn')
+// const menu = document.querySelector('.menu')
+// const menuNav = document.querySelector('.menu-nav')
+// const menuBranding = document.querySelector('.menu-branding')
+
+// const navItems = document.querySelectorAll('.nav-item')
+
+// // Set Initial State of Menu
+// let showMenu = false;
+
+// menuBtn.addEventListener('click', toggleMenu);
+
+// function toggleMenu() {
+//     if(!showMenu) {
+//         menuBtn.classList.add('close');
+//         menu.classList.add('show');
+//         menuNav.classList.add('show');
+//         menuBranding.classList.add('show');
+//         navItems.forEach(item => item.classList.add('show'));
+//         showMenu = true;
+//     } else {
+//         menuBtn.classList.remove('close');
+//         menu.classList.remove('show');
+//         menuNav.classList.remove('show');
+//         menuBranding.classList.remove('show');
+//         navItems.forEach(item => item.classList.remove('show'));
+//         showMenu = false;
+//     }
+
+// }
+
+  expandDayTitle:any;
+
+  openDayDisplay(day, month) {
+    var splitMonthYear = month.split(" ");
+    this.expandDayTitle = splitMonthYear[0] + " " + day + ", " + splitMonthYear[1];
+    const expandDayBtn = document.querySelector('.expandDay');
+    const dayContent = document.querySelector('.dayContent');
+    const calendarMonth = document.querySelector('.calendar-month');
+    expandDayBtn.classList.add('show');
+    dayContent.classList.add('show');
+    calendarMonth.classList.add('hide');
+  }
+
+  closeDisplay() {
+    console.log('working');
+    const expandDayBtn = document.querySelector('.expandDay');
+    const dayContent = document.querySelector('.dayContent');
+    const calendarMonth = document.querySelector('.calendar-month');
+    expandDayBtn.classList.remove('show');
+    dayContent.classList.remove('show');
+    calendarMonth.classList.remove('hide');
+  }
 }
