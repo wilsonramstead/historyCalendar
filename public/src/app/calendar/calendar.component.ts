@@ -3,8 +3,7 @@ import { HttpService } from '../http.service';
 
 import * as dayjs from "dayjs";
 import { stringify } from 'querystring';
-
-
+// import * as request from 'request';
 
 @Component({
   selector: 'app-calendar',
@@ -28,8 +27,8 @@ export class CalendarComponent implements OnInit {
   calendarDaysElement: any;
 
   ngOnInit() {
-
     this.initialScript();
+    this.showDayContent = 'events';
   }
 
   initialScript() {
@@ -52,13 +51,10 @@ export class CalendarComponent implements OnInit {
     days.forEach((day) => {
       this.appendDay(day, this.calendarDaysElement);
     });
-    console.log('days_23124: ', days);
   }
 
   
   appendDay(day, calendarDaysElement) {
-    const dayElementClassList = [];
-    dayElementClassList.push("calendar-day");
     const dayElement = [day.dayOfMonth];
     if (!day.isCurrentMonth) {
       dayElement.push('not_current');
@@ -70,6 +66,7 @@ export class CalendarComponent implements OnInit {
       dayElement.push('');
       calendarDaysElement.push(dayElement);
     }
+
   }
   removeAllDayElements(calendarDaysElement) {
     let first = calendarDaysElement.firstElementChild;
@@ -147,51 +144,11 @@ export class CalendarComponent implements OnInit {
     this.createCalendar(this.selectedMonth.format("YYYY"), this.selectedMonth.format("M"));
   }
 
-  // getGoals() {
-  //   let observable = this._httpService.getGoals();
-  //   observable.subscribe(data => {
-  //       this.allGoals = data['data'];
-  //       console.log('getGoals from calendar: ', this.allGoals);
-  //   })
-  //   return this.allGoals;
-  // }
-
-
-
-
-  // Select DOM Items
-// const menuBtn = document.querySelector('.menu-btn')
-// const menu = document.querySelector('.menu')
-// const menuNav = document.querySelector('.menu-nav')
-// const menuBranding = document.querySelector('.menu-branding')
-
-// const navItems = document.querySelectorAll('.nav-item')
-
-// // Set Initial State of Menu
-// let showMenu = false;
-
-// menuBtn.addEventListener('click', toggleMenu);
-
-// function toggleMenu() {
-//     if(!showMenu) {
-//         menuBtn.classList.add('close');
-//         menu.classList.add('show');
-//         menuNav.classList.add('show');
-//         menuBranding.classList.add('show');
-//         navItems.forEach(item => item.classList.add('show'));
-//         showMenu = true;
-//     } else {
-//         menuBtn.classList.remove('close');
-//         menu.classList.remove('show');
-//         menuNav.classList.remove('show');
-//         menuBranding.classList.remove('show');
-//         navItems.forEach(item => item.classList.remove('show'));
-//         showMenu = false;
-//     }
-
-// }
-
   expandDayTitle:any;
+  dayEvents:any;
+  dayBirths:any;
+  dayDeaths:any;
+  showDayContent:any;
 
   openDayDisplay(day, month) {
     var splitMonthYear = month.split(" ");
@@ -202,10 +159,30 @@ export class CalendarComponent implements OnInit {
     expandDayBtn.classList.add('show');
     dayContent.classList.add('show');
     calendarMonth.classList.add('hide');
+
+    var monthNum = dayjs().format('M');
+    var monthDay = '?month=' + monthNum + '&day=' + day;
+    console.log('monthDay: ', monthDay);
+
+    let observable = this._httpService.getHistory(monthDay);
+    observable.subscribe(data => {
+        console.log('data: ', data['data']);
+        this.dayEvents = data['data']['Events'];
+        this.dayBirths = data['data']['Births'];
+        this.dayDeaths = data['data']['Deaths'];
+    })
+  }
+  showContent(string) {
+    this.showDayContent = string;
+  }
+  toggleAsc() {
+    this.dayEvents.reverse();
+    this.dayBirths.reverse();
+    this.dayDeaths.reverse();
   }
 
+
   closeDisplay() {
-    console.log('working');
     const expandDayBtn = document.querySelector('.expandDay');
     const dayContent = document.querySelector('.dayContent');
     const calendarMonth = document.querySelector('.calendar-month');
@@ -213,4 +190,5 @@ export class CalendarComponent implements OnInit {
     dayContent.classList.remove('show');
     calendarMonth.classList.remove('hide');
   }
+
 }

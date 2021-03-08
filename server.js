@@ -1,12 +1,18 @@
 
 const express = require('express');
-const bodyParser = require('body-parser');
-
+var request = require('request');
 const app = express();
 
-app.use(bodyParser.json());
+app.use(express.json());
 
-require('./routes')(app);
+
+app.get('/history', (req,res) => {
+    console.log('req.query.month: ', req.query.month);
+    console.log('req.query.day: ', req.query.day);
+    request({
+        uri: 'http://history.muffinlabs.com/date/' + req.query.month + '/' + req.query.day
+    }).pipe(res);
+});
 
 app.use(express.static( __dirname + '/public/dist/public'));
 

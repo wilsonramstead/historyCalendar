@@ -129,15 +129,46 @@ li {
     .dayContent {
         margin: auto;
         margin-top: 10vh;
-        width: 60%;
-        height: 500px;
-        overflow: hidden;
+        width: 75%;
+        height: 75vh;
+        overflow: auto;
         background: #cfd7e3;
         opacity: 1.0;
         border: 3px solid black;
         border-radius: 50px;
         
         text-align: center;
+
+        .dayInfo {
+            padding: 10px;
+
+            li  {
+                text-align: left;
+                span {
+                    font-weight: bold;
+                    text-decoration: underline;
+                }
+            }
+
+            h3 span {
+                color: rgb(209, 59, 255);
+                cursor: pointer;
+
+                &:hover {
+                    color: rgb(132, 26, 165);
+                    text-decoration: underline;
+                }
+            }
+            h5 span {
+                color: rgb(35, 123, 255);
+                cursor: pointer;
+
+                &:hover {
+                    color: rgb(23, 92, 196);
+                    text-decoration: underline;
+                }
+            }
+        }
     }
 }
 

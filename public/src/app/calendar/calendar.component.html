@@ -4,7 +4,7 @@
         <section class="calendar-month-header-selectors">
             <span (click)="previousMonth()" id="previous-month-selector"><</span>
             <div class="calendar-month-header-selected-month"> 
-                <h1>{{ selectedMonth }}</h1>
+                <h1 (click)="test()">{{ selectedMonth }}</h1>
             </div>
             <span (click)="nextMonth()" id="next-month-selector">></span>
         </section>
@@ -19,6 +19,8 @@
             <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == 'today'" class="calendar-day calendar-day-today"> {{ day[0] }}</div>
             <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == 'not_current'" class="calendar-day calendar-day--not-current">{{ day[0] }}</div>
             <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == ''" class="calendar-day">{{ day[0] }}</div>
+
+            
         </div>
     </ol>
 </div>
@@ -32,5 +34,19 @@
             <div class="btn-line"></div>
         </div>
         <hr>
+
+        <div class="dayInfo">
+            <h3><span (click)="showContent('events')">Events</span> | <span (click)="showContent('births')">Births</span> | <span (click)="showContent('deaths')">Deaths</span></h3>
+            <h5><span style="color: blue;" (click)="toggleAsc()">Toggle Ascending/Descending</span></h5>
+            <ul *ngIf="showDayContent == 'events'">
+                <li *ngFor="let events of dayEvents"><span>{{ events.year }}</span> -- {{ events.text }}</li>
+            </ul>
+            <ul *ngIf="showDayContent == 'births'">
+                <li *ngFor="let events of dayBirths"><span>{{ events.year }}</span> -- {{ events.text }}</li>
+            </ul>
+            <ul *ngIf="showDayContent == 'deaths'">
+                <li *ngFor="let events of dayDeaths"><span>{{ events.year }}</span> -- {{ events.text }}</li>
+            </ul>
+        </div>
     </div>
 </div>

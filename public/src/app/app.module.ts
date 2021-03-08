@@ -8,16 +8,12 @@ import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { HttpService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
-import { NewGoalComponent } from './new-goal/new-goal.component';
-import { ShowGoalsComponent } from './show-goals/show-goals.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarComponent,
-    NewGoalComponent,
-    ShowGoalsComponent
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
