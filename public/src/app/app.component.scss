@@ -1,32 +1,290 @@
 
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+// * {
+//     box-sizing: border-box;
+//     margin: 0;
+//     padding: 0;
+// }
 
 body {
-    // @include background;
-    // background: $primary-color;
-    // color: set-text-color($primary-color);
     height: 100vh;
-    // width: 100%;
+    width: 100%;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.5;
+    font-family: sans-serif;
+    font-weight: 100;
+    --grey-100: #e4e9f0;
+    --grey-200: #cfd7e3;
+    --grey-300: #b5c0cd;
+    --grey-800: #3e4e63;
+    --grid-gap: 1px;
+    --day-label-size: 20px;
 }
 
 main {
     height: 100%;
     width: 100%;
-    // background: radial-gradient(white, #797979);
     background: linear-gradient(#00c3ff, white);
-    // padding-top: 5vh;
 }
 
+ol,
+li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
 
+.calendar-month {
+    position: relative;
+    background-color: var(--grey-200);
+    border: solid 1px var(--grey-200);
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
 
-#test {
-    color: blue;
+    &-header {
+        display: flex;
+        justify-content: center;
+        background-color: #fff;
+        padding: 10px;
+        border-left: 4px solid black;
+        border-right: 4px solid black;
+        border-bottom: 4px solid black;
+        border-radius: 0px 0px 25% 25%;
+        margin-bottom: 15px;
+
+        h1 {
+            width: 236px;
+        }
+        &-selected-month {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        &-selectors > * {
+            cursor: pointer;
+            display: inline-block;
+        }
+    }
+    &.hide {
+        opacity: 0.15;
+    }
+}
+.day-of-week,
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+.day-of-week {
+    color: var(--grey-800);
+    font-size: 18px;
+    // background-color: #fff;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    border-bottom: 2px solid black;
+}
+.days-grid {
+    height: 100%;
+    position: relative;
+    grid-gap: 10px;
+    border-top: solid 1px var(--grey-200);
+    margin-top: 10px;
+}
+.calendar-day {
+    position: relative;
+    font-size: 16px;
+    color: var(--grey-800);
+    padding: 5px;
+    border: 2px solid black;
+    background: rgb(150, 143, 255);
+
+    border-radius: 20px;
+
+    &--not-current {
+        background: rgba($color: #5e5e5e, $alpha: 0.5);
+        color: white;
+    }
+    &-today {
+        padding-top: 4px;
+        color: #fff;
+        background-color: black;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+    }
+
+    &.hide {
+        visibility: hidden;
+    }
+}
+
+.expandDay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    // float: left;
+    width: 100%;
+    height: 100vh;
+    visibility: hidden;
+    transform: translate3d(0,-100%,0);
+    transition: all 0.5s ease-out;
+
+    &.show {
+        visibility: visible;
+        transform: translate3d(0,0,0);
+
+    }
+    .dayContent {
+        margin: auto;
+        margin-top: 10vh;
+        width: 75%;
+        height: 75vh;
+        overflow: auto;
+        background: #cfd7e3;
+        opacity: 1.0;
+        border: 3px solid black;
+        border-radius: 50px;
+        text-align: center;
+
+        .dayInfo {
+            li  {
+                text-align: left;
+                span {
+                    font-weight: bold;
+                    text-decoration: underline;
+                }
+            }
+            h3 span {
+                color: rgb(209, 59, 255);
+                cursor: pointer;
+
+                &:hover {
+                    color: rgb(132, 26, 165);
+                    text-decoration: underline;
+                }
+            }
+            h5 {
+                margin: 20px;
+                span {
+                    color: rgb(35, 123, 255);
+                    cursor: pointer;
+    
+                    &:hover {
+                        color: rgb(23, 92, 196);
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+.closeBtn {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+
+    .btn-line {
+        width: 28px;
+        height: 3px;
+        margin: 0 0 5px 0;
+        background: black;
+        border-radius: 5px;
+
+        &:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 1px);
+        }
+        &:nth-child(2) {
+            transform: rotate(-45deg) translate(5px, -2px);
+        }
+    }
+    .calendar-day {
+        min-height: 50px;
+    }
+
+}
+@media screen and (max-width: 500px) {
+    .closeBtn {
+        right: -6%;
+    }
+    .dayInfo {
+        padding: 10px 10px;
+    }
+    .calendar-month {
+        width: 94%;
+        &-header {
+            height: 75px;
+            h1 {
+                width: 214px;
+            }
+    
+            &-selected-month {
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+    }
+    .calendar-day {
+        min-height: 68px;
+    }
+}
+@media screen and (min-width: 501px) {
+    .dayInfo {
+        padding: 10px 20px;
+    }
+    .expandDay .dayContent {
+        width: 85%;
+        height: 80vh;
+    }
+    .closeBtn {
+        right: -15%;
+    }
+    .calendar-month {
+        width: 90%;
+        &-header {
+            height: 100px;
+            h1 {
+                width: 236px;
+            }
+    
+            &-selected-month {
+                font-size: 24px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+@media screen and (min-width: 767px) {
+    .expandDay .dayContent {
+        width: 75%;
+        height: 75vh;
+    }
+    .closeBtn {
+        right: -25%;
+    }
+    .calendar-day {
+        min-height: 100px;
+    }
+    .calendar-month {
+        width: 80%;
+    }
+    .calendar-day {
+        min-height: 100px;
+    }
+}
+@media screen and (min-width: 1171px) {
+    .expandDay {
+        .dayInfo {
+            padding: 10px 30px;
+        }
+        .dayContent {
+            width: 75%;
+            height: 75vh;
+        }
+    }
+    .closeBtn {
+        right: -28%;
+    }
 }

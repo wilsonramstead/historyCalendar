@@ -1,16 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Goal Tracker 2021</title>
-</head>
-<body>
-  <header></header>
-  <main>
-    <app-calendar></app-calendar>
-  </main>
-  <footer></footer>
-</body>
-</html>
+
+<div class="calendar-month">
+  <section class="calendar-month-header">
+      <section class="calendar-month-header-selectors">
+          <span (click)="previousMonth()" id="previous-month-selector"><</span>
+          <div class="calendar-month-header-selected-month"> 
+              <h1 (click)="test()">{{ selectedMonth }}</h1>
+          </div>
+          <span (click)="nextMonth()" id="next-month-selector">></span>
+      </section>
+  </section>
+  <ol id="days-of-week" class="day-of-week">
+      <li *ngFor="let weekday of WEEKDAYS"> {{ weekday }}</li>
+  </ol>
+  <ol id="calendar-days" class="days-grid">
+      <div *ngFor="let day of calendarDaysElement">
+          <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == 'today'" class="calendar-day calendar-day-today"> {{ day[0] }}</div>
+          <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == 'not_current'" class="calendar-day calendar-day--not-current">{{ day[0] }}</div>
+          <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == ''" class="calendar-day">{{ day[0] }}</div>
+      </div>
+  </ol>
+</div>
+<div class="expandDay">
+  <div class="dayContent">
+      <h1 style="display: inline-block; height: 75px; margin-top: 20px;">{{ expandDayTitle }}</h1>
+      <div (click)="closeDisplay()" class="closeBtn">
+          <div class="btn-line"></div>
+          <div class="btn-line"></div>
+      </div>
+      <hr>
+      <div class="dayInfo">
+          <h3><span (click)="showContent('events')">Events</span> | <span (click)="showContent('births')">Births</span> | <span (click)="showContent('deaths')">Deaths</span></h3>
+          <h5><span style="color: blue;" (click)="toggleAsc()">Toggle Ascending/Descending</span></h5>
+          <ul *ngIf="showDayContent == 'events'">
+              <li *ngFor="let events of dayEvents"><span>{{ events.year }}</span> -- {{ events.text }}</li>
+          </ul>
+          <ul *ngIf="showDayContent == 'births'">
+              <li *ngFor="let events of dayBirths"><span>{{ events.year }}</span> -- {{ events.text }}</li>
+          </ul>
+          <ul *ngIf="showDayContent == 'deaths'">
+              <li *ngFor="let events of dayDeaths"><span>{{ events.year }}</span> -- {{ events.text }}</li>
+          </ul>
+      </div>
+  </div>
+</div>

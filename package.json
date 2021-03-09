@@ -2,10 +2,12 @@
   "name": "goalTracker",
   "version": "1.0.0",
   "description": "",
-  "main": "controller.js",
+  "main": "server.js",
+  "homepage": "https://wilsonramstead.github.io/historyCalendar",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "deploy": "gh-pages -d public/dist"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,7 @@
     "bootstrap": "^4.6.0",
     "dayjs": "^1.10.4",
     "express": "^4.17.1",
+    "gh-pages": "^3.1.0",
     "mongoose": "^5.11.18",
     "request": "^2.88.2",
     "sass": "^1.32.8"
