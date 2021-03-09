@@ -39,7 +39,8 @@ export class AppComponent implements OnInit {
     this.INITIAL_MONTH = Number(dayjs().format("M"));
     this.selectedMonth = dayjs(new Date(this.INITIAL_YEAR, this.INITIAL_MONTH - 1, 1));
     // -- create calendar --
-    this.createCalendar(this.INITIAL_YEAR, this.INITIAL_MONTH);
+    // this.createCalendar(this.INITIAL_YEAR, this.INITIAL_MONTH);
+    this.presentMonth();
   }
 
   createCalendar(year, month) {

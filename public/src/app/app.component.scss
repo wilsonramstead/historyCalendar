@@ -149,6 +149,11 @@ li {
         border-radius: 50px;
         text-align: center;
 
+        h1 {
+            height: 75px; 
+            margin-top: 20px;
+        }
+
         .dayInfo {
             li  {
                 text-align: left;
@@ -206,8 +211,8 @@ li {
 
 }
 @media screen and (max-width: 500px) {
-    .closeBtn {
-        right: -6%;
+    .dayContent h1 {
+        display: block;
     }
     .dayInfo {
         padding: 10px 10px;
@@ -231,6 +236,9 @@ li {
     }
 }
 @media screen and (min-width: 501px) {
+    .dayContent h1 {
+        display: inline-block;
+    }
     .dayInfo {
         padding: 10px 20px;
     }

@@ -4,7 +4,7 @@
       <section class="calendar-month-header-selectors">
           <span (click)="previousMonth()" id="previous-month-selector"><</span>
           <div class="calendar-month-header-selected-month"> 
-              <h1 (click)="test()">{{ selectedMonth }}</h1>
+              <h1>{{ selectedMonth }}</h1>
           </div>
           <span (click)="nextMonth()" id="next-month-selector">></span>
       </section>
@@ -22,7 +22,7 @@
 </div>
 <div class="expandDay">
   <div class="dayContent">
-      <h1 style="display: inline-block; height: 75px; margin-top: 20px;">{{ expandDayTitle }}</h1>
+      <h1>{{ expandDayTitle }}</h1>
       <div (click)="closeDisplay()" class="closeBtn">
           <div class="btn-line"></div>
           <div class="btn-line"></div>
