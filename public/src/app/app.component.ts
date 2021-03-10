@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
 import * as dayjs from "dayjs";
-var customParseFormat = require('dayjs/plugin/customParseFormat')
+import * as customParseFormat from "dayjs/plugin/customParseFormat";
 
 @Component({
   selector: 'app-root',
