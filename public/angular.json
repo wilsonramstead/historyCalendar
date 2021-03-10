@@ -28,12 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              {
-                "input": "src/styles2.scss",
-                "bundleName": "styles2",
-                "inject": false
-              }
+              "src/styles.scss"
             ],
             "scripts": []
           },
