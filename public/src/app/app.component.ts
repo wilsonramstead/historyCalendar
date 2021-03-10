@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   WEEKDAYS: any;
   TODAY: any;
   calendarDaysElement: any;
-
   expandDayTitle:any;
   dayEvents:any;
   dayBirths:any;
@@ -39,7 +38,6 @@ export class AppComponent implements OnInit {
     this.INITIAL_MONTH = Number(dayjs().format("M"));
     this.selectedMonth = dayjs(new Date(this.INITIAL_YEAR, this.INITIAL_MONTH - 1, 1));
     // -- create calendar --
-    // this.createCalendar(this.INITIAL_YEAR, this.INITIAL_MONTH);
     this.presentMonth();
   }
 
@@ -47,24 +45,15 @@ export class AppComponent implements OnInit {
     this.calendarDaysElement  = [];
     this.selectedMonth = dayjs(new Date(year, month-1)).format("MMMM YYYY");
     this.currentMonthDays = this.createDaysForCurrentMonth(year,month);
-    console.log("this.currentMonthDays: ", this.currentMonthDays);
-
     this.previousMonthDays = this.createDaysForPreviousMonth(year,month);
-    console.log("this.previousMonthDays: ", this.previousMonthDays);
-
     this.nextMonthDays = this.createDaysForNextMonth(year, month);
-    console.log("this.nextMonthDays: ", this.nextMonthDays);
     const days = [...this.previousMonthDays, ...this.currentMonthDays, ...this.nextMonthDays];
-    console.log("days: ", days);
-
     days.forEach((day) => {
       this.appendDay(day, this.calendarDaysElement);
     });
   }
 
   appendDay(day, calendarDaysElement) {
-    console.log('appendDayStart');
-
     const dayElement = [day.dayOfMonth];
     if (!day.isCurrentMonth) {
       dayElement.push('not_current');
@@ -76,8 +65,6 @@ export class AppComponent implements OnInit {
       dayElement.push('');
       calendarDaysElement.push(dayElement);
     }
-    console.log('appendDayEnd');
-
   }
   removeAllDayElements(calendarDaysElement) {
     let first = calendarDaysElement.firstElementChild;
@@ -143,49 +130,21 @@ export class AppComponent implements OnInit {
     return Number(weekday['$W']);
   }
   previousMonth() {
-    console.log('this.selectedMonth: ', this.selectedMonth);
-    this.selectedMonth = dayjs(this.selectedMonth).subtract(1, "month");
-    console.log("this.selectedMonth.format('YYYY'): ", this.selectedMonth.format("YYYY"));
-    console.log("this.selectedMonth.format('M'): ", this.selectedMonth.format("M"));
-    console.log('this.selectedMonth: ', this.selectedMonth);
-    this.createCalendar(this.selectedMonth.format("YYYY"), this.selectedMonth.format("M"));
+    dayjs.extend(customParseFormat)
+    var test = dayjs(this.selectedMonth, "MMMM YYYY");
+    var test2 = Number(test.format('M')) - 1;
+    this.createCalendar(test.format("YYYY"), String(test2));
   }
   presentMonth() {
-    console.log('this.INITIAL_YEAR: ', this.INITIAL_YEAR);
-    console.log('this.INITIAL_MONTH: ', this.INITIAL_MONTH);
-    console.log('typeof(this.INITIAL_MONTH)', typeof(this.INITIAL_MONTH));
     this.selectedMonth = dayjs(new Date(this.INITIAL_YEAR, this.INITIAL_MONTH - 1, 1));
-    console.log("this.selectedMonth.format('YYYY'): ", this.selectedMonth.format("YYYY"));
-    console.log("this.selectedMonth.format('M'): ", this.selectedMonth.format("M"));
-    console.log('this.selectedMonth: ', this.selectedMonth);
-    
     this.createCalendar(this.selectedMonth.format("YYYY"), this.selectedMonth.format("M"));
   }
   nextMonth() {
     dayjs.extend(customParseFormat)
     var test = dayjs(this.selectedMonth, "MMMM YYYY");
-    console.log('test: ', test);
-    console.log('test2: ', test.format('YYYY'));
-    console.log('test3: ', test.format('M'));
     var test2 = Number(test.format('M')) + 1;
-    console.log('test12345: ', test2);
-    console.log('test12345: ', String(test2));
-
-    console.log('this.selectedMonth: ', this.selectedMonth);
-
-    // this.selectedMonth = dayjs(this.selectedMonth).add(1, "month");
-    // console.log('typeof(this.selectedMonth.format("YYYY"))', typeof(this.selectedMonth.format("YYYY")));
-
-    // this.selectedMonth = dayjs(new Date(this.))
-    // console.log('Number(this.selectedMonth.format("YYYY")))', Number(this.selectedMonth.format("YYYY")));
-
-    // console.log("this.selectedMonth.format('YYYY'): ", this.selectedMonth.format("YYYY"));
-    // console.log("this.selectedMonth.format('M'): ", this.selectedMonth.format("M"));
-    // console.log('this.selectedMonth: ', this.selectedMonth);
     this.createCalendar(test.format("YYYY"), String(test2));
   }
-
-  // If Number isn't the resolution .... try the 'new Date' for each function.
 
   openDayDisplay(day, month) {
     var splitMonthYear = month.split(" ");
@@ -199,11 +158,9 @@ export class AppComponent implements OnInit {
 
     var monthNum = dayjs().format('M');
     var monthDay = '?month=' + monthNum + '&day=' + day;
-    console.log('monthDay: ', monthDay);
 
     let observable = this._httpService.getHistory(monthDay);
     observable.subscribe(data => {
-        console.log('data: ', data['data']);
         this.dayEvents = data['data']['Events'];
         this.dayBirths = data['data']['Births'];
         this.dayDeaths = data['data']['Deaths'];

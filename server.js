@@ -5,10 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-
 app.get('/history', (req,res) => {
-    console.log('req.query.month: ', req.query.month);
-    console.log('req.query.day: ', req.query.day);
     request({
         uri: 'http://history.muffinlabs.com/date/' + req.query.month + '/' + req.query.day
     }).pipe(res);

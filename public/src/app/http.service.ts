@@ -10,11 +10,7 @@ export class HttpService {
 
   constructor(private _http: HttpClient) { 
   }
-
-
   getHistory(monthDay) {
-    console.log('monthDay: ', monthDay);
     return this._http.get('/history' + monthDay);
   }
-
 }
