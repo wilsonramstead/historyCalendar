@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
-
 import * as dayjs from "dayjs";
 
 @Component({
@@ -134,16 +133,30 @@ export class AppComponent implements OnInit {
   }
   previousMonth() {
     this.selectedMonth = dayjs(this.selectedMonth).subtract(1, "month");
-    this.createCalendar(this.selectedMonth.format("YYYY"), this.selectedMonth.format("M"));
+    console.log("this.selectedMonth.format('YYYY'): ", this.selectedMonth.format("YYYY"));
+    console.log("this.selectedMonth.format('M'): ", this.selectedMonth.format("M"));
+    this.createCalendar(Number(this.selectedMonth.format("YYYY")), Number(this.selectedMonth.format("M")));
   }
   presentMonth() {
+    console.log('this.INITIAL_YEAR: ', this.INITIAL_YEAR);
+    console.log('this.INITIAL_MONTH: ', this.INITIAL_MONTH);
+    console.log('typeof(this.INITIAL_MONTH)', typeof(this.INITIAL_MONTH));
     this.selectedMonth = dayjs(new Date(this.INITIAL_YEAR, this.INITIAL_MONTH - 1, 1));
+    console.log("this.selectedMonth.format('YYYY'): ", this.selectedMonth.format("YYYY"));
+    console.log("this.selectedMonth.format('M'): ", this.selectedMonth.format("M"));
     this.createCalendar(this.selectedMonth.format("YYYY"), this.selectedMonth.format("M"));
   }
   nextMonth() {
     this.selectedMonth = dayjs(this.selectedMonth).add(1, "month");
-    this.createCalendar(this.selectedMonth.format("YYYY"), this.selectedMonth.format("M"));
+    console.log('typeof(this.selectedMonth.format("YYYY"))', typeof(this.selectedMonth.format("YYYY")));
+    console.log('Number(this.selectedMonth.format("YYYY")))', Number(this.selectedMonth.format("YYYY")));
+    
+    console.log("this.selectedMonth.format('YYYY'): ", this.selectedMonth.format("YYYY"));
+    console.log("this.selectedMonth.format('M'): ", this.selectedMonth.format("M"));
+    this.createCalendar(Number(this.selectedMonth.format("YYYY")), Number(this.selectedMonth.format("M")));
   }
+
+  // If Number isn't the resolution .... try the 'new Date' for each function.
 
   openDayDisplay(day, month) {
     var splitMonthYear = month.split(" ");
@@ -175,8 +188,6 @@ export class AppComponent implements OnInit {
     this.dayBirths.reverse();
     this.dayDeaths.reverse();
   }
-
-
   closeDisplay() {
     const expandDayBtn = document.querySelector('.expandDay');
     const dayContent = document.querySelector('.dayContent');
