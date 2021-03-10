@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
 import * as dayjs from "dayjs";
+var customParseFormat = require('dayjs/plugin/customParseFormat')
 
 @Component({
   selector: 'app-root',
@@ -161,16 +162,27 @@ export class AppComponent implements OnInit {
     this.createCalendar(this.selectedMonth.format("YYYY"), this.selectedMonth.format("M"));
   }
   nextMonth() {
-    console.log('this.selectedMonth: ', this.selectedMonth);
-    this.selectedMonth = dayjs(this.selectedMonth).add(1, "month");
-    console.log('typeof(this.selectedMonth.format("YYYY"))', typeof(this.selectedMonth.format("YYYY")));
+    dayjs.extend(customParseFormat)
+    var test = dayjs(this.selectedMonth, "MMMM YYYY");
+    console.log('test: ', test);
+    console.log('test2: ', test.format('YYYY'));
+    console.log('test3: ', test.format('M'));
+    var test2 = Number(test.format('M')) + 1;
+    console.log('test12345: ', test2);
+    console.log('test12345: ', String(test2));
 
-    console.log('Number(this.selectedMonth.format("YYYY")))', Number(this.selectedMonth.format("YYYY")));
-    
-    console.log("this.selectedMonth.format('YYYY'): ", this.selectedMonth.format("YYYY"));
-    console.log("this.selectedMonth.format('M'): ", this.selectedMonth.format("M"));
     console.log('this.selectedMonth: ', this.selectedMonth);
-    this.createCalendar(this.selectedMonth.format("YYYY"), this.selectedMonth.format("M"));
+
+    // this.selectedMonth = dayjs(this.selectedMonth).add(1, "month");
+    // console.log('typeof(this.selectedMonth.format("YYYY"))', typeof(this.selectedMonth.format("YYYY")));
+
+    // this.selectedMonth = dayjs(new Date(this.))
+    // console.log('Number(this.selectedMonth.format("YYYY")))', Number(this.selectedMonth.format("YYYY")));
+
+    // console.log("this.selectedMonth.format('YYYY'): ", this.selectedMonth.format("YYYY"));
+    // console.log("this.selectedMonth.format('M'): ", this.selectedMonth.format("M"));
+    // console.log('this.selectedMonth: ', this.selectedMonth);
+    this.createCalendar(test.format("YYYY"), String(test2));
   }
 
   // If Number isn't the resolution .... try the 'new Date' for each function.
