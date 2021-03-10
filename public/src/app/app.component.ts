@@ -132,9 +132,11 @@ export class AppComponent implements OnInit {
     return Number(weekday['$W']);
   }
   previousMonth() {
+    console.log('this.selectedMonth: ', this.selectedMonth);
     this.selectedMonth = dayjs(this.selectedMonth).subtract(1, "month");
     console.log("this.selectedMonth.format('YYYY'): ", this.selectedMonth.format("YYYY"));
     console.log("this.selectedMonth.format('M'): ", this.selectedMonth.format("M"));
+    console.log('this.selectedMonth: ', this.selectedMonth);
     this.createCalendar(Number(this.selectedMonth.format("YYYY")), Number(this.selectedMonth.format("M")));
   }
   presentMonth() {
@@ -147,12 +149,14 @@ export class AppComponent implements OnInit {
     this.createCalendar(this.selectedMonth.format("YYYY"), this.selectedMonth.format("M"));
   }
   nextMonth() {
+    console.log('this.selectedMonth: ', this.selectedMonth);
     this.selectedMonth = dayjs(this.selectedMonth).add(1, "month");
     console.log('typeof(this.selectedMonth.format("YYYY"))', typeof(this.selectedMonth.format("YYYY")));
     console.log('Number(this.selectedMonth.format("YYYY")))', Number(this.selectedMonth.format("YYYY")));
     
     console.log("this.selectedMonth.format('YYYY'): ", this.selectedMonth.format("YYYY"));
     console.log("this.selectedMonth.format('M'): ", this.selectedMonth.format("M"));
+    console.log('this.selectedMonth: ', this.selectedMonth);
     this.createCalendar(Number(this.selectedMonth.format("YYYY")), Number(this.selectedMonth.format("M")));
   }
 
