@@ -182,14 +182,14 @@ li {
 }
 .closeBtn {
     display: inline-block;
-    position: relative;
+    position: fixed;
     cursor: pointer;
 
     .btn-line {
         width: 28px;
         height: 3px;
         margin: 0 0 5px 0;
-        background: black;
+        background: white;
         border-radius: 5px;
 
         &:nth-child(1) {
@@ -230,6 +230,10 @@ li {
         min-height: 90px;
         padding-top: 45%;
     }
+    .closeBtn {
+        right: 4%;
+        top: 120px;
+    }
 }
 @media screen and (min-width: 501px) {
     .dayContent h1 {
@@ -242,9 +246,6 @@ li {
     .expandDay .dayContent {
         width: 85%;
         height: 80vh;
-    }
-    .closeBtn {
-        right: -15%;
     }
     .calendar-month {
         width: 90%;
@@ -263,6 +264,10 @@ li {
     .calendar-day {
         min-height: 90px;
         padding-top: 45%;
+    }
+    .closeBtn {
+        right: 11%;
+        top: 110px;
     }
 }
 @media screen and (min-width: 767px) {
@@ -286,6 +291,10 @@ li {
         min-height: 100px;
         padding-top: 15px;
     }
+    .closeBtn {
+        right: 8%;
+        top: 110px;
+    }
 }
 @media screen and (min-width: 1171px) {
     .expandDay {
@@ -296,8 +305,5 @@ li {
             width: 75%;
             height: 75vh;
         }
-    }
-    .closeBtn {
-        right: -28%;
     }
 }
