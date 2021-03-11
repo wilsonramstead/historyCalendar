@@ -148,7 +148,9 @@ export class AppComponent implements OnInit {
   }
 
   openDayDisplay(day, month) {
+    console.log('day: ', day);
     var splitMonthYear = month.split(" ");
+    console.log('month: ', splitMonthYear[0]);
     this.expandDayTitle = splitMonthYear[0] + " " + day + ", " + splitMonthYear[1];
     const expandDayBtn = document.querySelector('.expandDay');
     const dayContent = document.querySelector('.dayContent');
@@ -166,6 +168,13 @@ export class AppComponent implements OnInit {
         this.dayBirths = data['data']['Births'];
         this.dayDeaths = data['data']['Deaths'];
     })
+    if(day == '15' && splitMonthYear[0] == 'October') {
+      let last = this.dayBirths.pop();
+      let secondLast = this.dayBirths.pop();
+      this.dayBirths.push({"year": "1999", "text": "Leonardo (Chin-Young) Yi the Great, was born."});
+      this.dayBirths.push(secondLast);
+      this.dayBirths.push(last);
+    }
     this.showContent('events');
   }
   showContent(string) {

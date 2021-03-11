@@ -15,7 +15,7 @@
   <ol id="calendar-days" class="days-grid">
       <div *ngFor="let day of calendarDaysElement">
           <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == 'today'" class="calendar-day calendar-day-today"> {{ day[0] }}</div>
-          <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == 'not_current'" class="calendar-day calendar-day--not-current">{{ day[0] }}</div>
+          <div *ngIf="day[1] == 'not_current'" class="calendar-day calendar-day--not-current">{{ day[0] }}</div>
           <div (click)="openDayDisplay(day[0], selectedMonth)" *ngIf="day[1] == ''" class="calendar-day">{{ day[0] }}</div>
       </div>
   </ol>
