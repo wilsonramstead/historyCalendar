@@ -29,8 +29,8 @@
       </div>
       <hr>
       <div class="dayInfo">
-          <h3><span (click)="showContent('events')">Events</span> | <span (click)="showContent('births')">Births</span> | <span (click)="showContent('deaths')">Deaths</span></h3>
-          <h5><span style="color: blue;" (click)="toggleAsc()">Toggle Ascending/Descending</span></h5>
+          <h3><span class="events" (click)="showContent('events')">Events</span> | <span class="births" (click)="showContent('births')">Births</span> | <span class="deaths" (click)="showContent('deaths')">Deaths</span></h3>
+          <h5><span (click)="toggleAsc()">Toggle Ascending/Descending</span></h5>
           <ul *ngIf="showDayContent == 'events'">
               <li *ngFor="let events of dayEvents"><span>{{ events.year }}</span> -- {{ events.text }}</li>
           </ul>

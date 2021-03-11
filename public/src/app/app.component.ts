@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   dayBirths:any;
   dayDeaths:any;
   showDayContent:any;
+  selectedApi:any;
 
   ngOnInit() {
     this.initialScript();
@@ -165,9 +166,14 @@ export class AppComponent implements OnInit {
         this.dayBirths = data['data']['Births'];
         this.dayDeaths = data['data']['Deaths'];
     })
+    this.showContent('events');
   }
   showContent(string) {
+    var element = document.querySelector('.' + this.showDayContent);
+    element.classList.remove('selected');
     this.showDayContent = string;
+    element = document.querySelector('.' + this.showDayContent);
+    element.classList.add('selected');
   }
   toggleAsc() {
     this.dayEvents.reverse();
@@ -181,5 +187,9 @@ export class AppComponent implements OnInit {
     expandDayBtn.classList.remove('show');
     dayContent.classList.remove('show');
     calendarMonth.classList.remove('hide');
+  }
+
+  addSelected(string) {
+
   }
 }

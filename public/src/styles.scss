@@ -20,8 +20,9 @@ body {
 main {
     height: 100%;
     width: 100%;
-    // background: radial-gradient(white, #797979);
-    background: linear-gradient(#00c3ff, white);
+    background-image: url("./assets/background.jpeg");
+    background-size: cover;
+    
     // padding-top: 5vh;
 }
 

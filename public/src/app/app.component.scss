@@ -14,18 +14,12 @@ body {
     line-height: 1.5;
     font-family: sans-serif;
     font-weight: 100;
-    --grey-100: #e4e9f0;
-    --grey-200: #cfd7e3;
-    --grey-300: #b5c0cd;
-    --grey-800: #3e4e63;
-    --grid-gap: 1px;
-    --day-label-size: 20px;
 }
 
 main {
     height: 100%;
     width: 100%;
-    background: linear-gradient(#00c3ff, white);
+    // background: linear-gradient(#00c3ff, white);
 }
 
 ol,
@@ -46,16 +40,21 @@ li {
     &-header {
         display: flex;
         justify-content: center;
-        background-color: #fff;
+        // background-color: rgba(255, 255, 255, 0.555);
+        // background: rgba(59, 59, 59, 0.425);
+        background: rgba(145, 145, 145, 0.301);
+
+        color: white;
         padding: 10px;
         border-left: 4px solid black;
         border-right: 4px solid black;
         border-bottom: 4px solid black;
-        border-radius: 0px 0px 25% 25%;
+
         margin-bottom: 15px;
 
         h1 {
             width: 236px;
+            margin-top: 10px;
         }
         &-selected-month {
             font-size: 24px;
@@ -81,7 +80,8 @@ li {
     // background-color: #fff;
     padding-bottom: 5px;
     padding-top: 10px;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid white;
+    color: white;
 }
 .days-grid {
     height: 100%;
@@ -93,12 +93,12 @@ li {
 .calendar-day {
     position: relative;
     font-size: 16px;
-    color: var(--grey-800);
     padding: 5px;
     border: 2px solid black;
-    background: rgb(150, 143, 255);
-
-    border-radius: 20px;
+    // background: rgba($color: e2e2e2, $alpha: 0.9);
+    background: rgba(207, 207, 207, 0.774);
+    color: black;
+    // border-radius: 20px;
 
     &--not-current {
         background: rgba($color: #5e5e5e, $alpha: 0.5);
@@ -143,45 +143,57 @@ li {
         width: 75%;
         height: 75vh;
         overflow: auto;
-        background: #cfd7e3;
+        background: rgba(59, 59, 59, 0.425);
+        color: black;
         opacity: 1.0;
         border: 3px solid black;
-        border-radius: 50px;
         text-align: center;
 
         h1 {
             height: 75px; 
             margin-top: 20px;
+            color: white;
+            text-shadow: 1px 1px 8px rgb(0, 0, 0);
+            margin-left: 3%;
         }
 
         .dayInfo {
             li  {
                 text-align: left;
+                color: white;
+                text-shadow: 1px 1px 8px rgb(0, 0, 0);
                 span {
                     font-weight: bold;
                     text-decoration: underline;
                 }
             }
             h3 span {
-                color: rgb(209, 59, 255);
+                // color: rgb(209, 59, 255);
                 cursor: pointer;
+                text-shadow: 1px 1px 8px rgb(190, 190, 190);
 
                 &:hover {
-                    color: rgb(132, 26, 165);
+                    // color: rgb(132, 26, 165);
                     text-decoration: underline;
                 }
             }
             h5 {
                 margin: 20px;
                 span {
-                    color: rgb(35, 123, 255);
+                    // color: rgb(35, 123, 255);
                     cursor: pointer;
+                    text-shadow: 1px 1px 8px rgb(190, 190, 190);
     
                     &:hover {
-                        color: rgb(23, 92, 196);
+                        // color: rgb(23, 92, 196);
                         text-decoration: underline;
                     }
                 }
+            }
+            .selected {
+                color: rgb(228, 228, 228);
+                text-shadow: 2px 2px 8px rgb(0, 0, 0);
+                text-decoration: underline;
             }
         }
     }
@@ -213,6 +225,7 @@ li {
 @media screen and (max-width: 500px) {
     .dayContent h1 {
         display: block;
+        font-size: 28px;
     }
     .dayInfo {
         padding: 10px 10px;
@@ -232,12 +245,14 @@ li {
         }
     }
     .calendar-day {
-        min-height: 68px;
+        min-height: 90px;
+        padding-top: 45%;
     }
 }
 @media screen and (min-width: 501px) {
     .dayContent h1 {
         display: inline-block;
+        font-size: 32px;
     }
     .dayInfo {
         padding: 10px 20px;
@@ -263,14 +278,21 @@ li {
             }
         }
     }
+    .calendar-day {
+        min-height: 90px;
+        padding-top: 45%;
+    }
 }
 @media screen and (min-width: 767px) {
     .expandDay .dayContent {
         width: 75%;
         height: 75vh;
+        h1 {
+            font-size: 34px;
+        }
     }
     .closeBtn {
-        right: -25%;
+        right: -18%;
     }
     .calendar-day {
         min-height: 100px;
@@ -280,6 +302,7 @@ li {
     }
     .calendar-day {
         min-height: 100px;
+        padding-top: 15px;
     }
 }
 @media screen and (min-width: 1171px) {
