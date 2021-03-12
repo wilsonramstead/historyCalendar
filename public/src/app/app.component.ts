@@ -193,11 +193,32 @@ export class AppComponent implements OnInit {
     if(day == '15' && month == 'October') {
       this.dayBirths = this.addLeosBirthday(this.dayBirths);
     }
+    if(day == '1' && month == 'August') {
+      this.dayBirths = this.addCorrinesBirthday(this.dayBirths);
+    }
+    if(day == '19' && month == 'April') {
+      this.dayBirths = this.addEricsBirthday(this.dayBirths);
+    }
+    if(day == '20' && month == 'January') {
+      this.dayBirths = this.addNoahsBirthday(this.dayBirths);
+    }
   }
   addLeosBirthday(array) {
     let last = array.pop();
-    array.push({"year": "1999", "text": "Leonardo (Chin-Young) Yi, Rapper / Producer / Director / Athlete / Father... 'The Great One'."});
+    array.push({"year": "1999", "text": "Leo Yi, Rapper, Producer, Director, Athlete, Father... 'The Great One'."});
     array.push(last);
+    return array;
+  }
+  addCorrinesBirthday(array) {
+    array.push({"year": "1997", "text": "Corrine Ramstead, Medical Practitioner, Astronaut, Philosopher, Sister to many, Father to all, Proud Mother of Guilly. "})
+    return array;
+  }
+  addEricsBirthday(array) {
+    array.push({"year": "1996", "text": "Eric Browne, CEO, Philosopher, Astronaut, Sister to many, Father to all. "})
+    return array;
+  }
+  addNoahsBirthday(array) {
+    array.push({"year": "1999", "text": "Noah Lindsey, Absolute unit, Cat mother, Loyal brother, Exceptional human. "})
     return array;
   }
 }
