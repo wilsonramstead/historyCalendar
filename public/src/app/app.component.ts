@@ -205,7 +205,7 @@ export class AppComponent implements OnInit {
   }
   addLeosBirthday(array) {
     let last = array.pop();
-    array.push({"year": "1999", "text": "Leo Yi, Rapper, Producer, Director, Athlete, Father... 'The Great One'."});
+    array.push({"year": "1998", "text": "Leo Yi, Rapper, Producer, Director, Athlete, Father... 'The Great One'."});
     array.push(last);
     return array;
   }
